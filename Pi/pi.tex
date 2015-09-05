@@ -1,0 +1,132 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\title{$\pi$ is Wrong}
+\author{Karl S. Dickman}
+\date{}
+\begin{document}
+\maketitle
+The circle and the sphere are members of a generalized class of shapes called
+$n$-spheres. An $n$-shpere is the set of all $n$-tuples\footnote{
+As a side note, most mathematical texts define an $n$-sphere as a set of
+$n+1$-tuples, because if you define it that way an $n$-sphere can be indexed in
+$n$ dimensions and encloses an $n+1$-ball that can be indexed in $n+1$
+dimensions. However, my indexing scheme works better with the formulas I am
+using.
+}
+$(x_1, \cdots , x_n)$
+satisfying the equality
+\[
+    \sum_{i=1}^n x_i^2=r^2,
+\]
+where $r$ is the radius of the $n$-sphere. An $n$-ball is defined in an
+analagous fashion, as the set of all $n$-tuples satisfying the inequality
+\[
+    \sum_{i=1}^n x_i^2 \le r^2.
+\]
+
+When studying $n$-spheres and $n$-balls, one might ask ``how large is an
+$n$-sphere of radius $r$?'' and ``how large is an $n$-ball of radius $r$?'' In the
+context of the ordinary sphere, or 3-sphere, these questions are usually phrased
+as ``what is the area of the sphere of radius $r$?'' and ``what is the volume of
+the ball of radius $r$?'' The ``area'' and ``volume'' terminology is used for
+all $n$-spheres. For $n>3$ this isn't a problem, but it is somewhat confusing at
+the lower dimensions. In this terminology, what we usually refer to as the
+circumference and area of a circle as the area of a 2-sphere and volume of a
+2-ball, respectively. The area and volume terminology must have come about
+because this concept is called the $n$-sphere rather than the $n$-circle.
+
+The area of an $n$-sphere is given by the formula
+\[
+    A_n = 2^n \frac
+        {\eta^{\left \lfloor \frac{n}{2} \right \rfloor r^{n-1}}}
+        {(n-2)!!},
+\]
+where $\eta$ is the right angle in radians and $!!$ is the double factorial
+function
+\[
+    n!! = \begin{cases}
+        1 \cdot 3 \cdot 5 \cdot \ldots \cdot n & n \mbox{ is odd} \\
+        2 \cdot 4 \cdot 6 \cdot \ldots \cdot n & n \mbox{ is even.}
+        \end {cases}
+\]
+The volume of an $n$-ball is given by the formula
+\[
+    V_n = 2^n \frac
+        {\eta^{\left \lfloor \frac{n}{2} \right \rfloor} r^n}
+        {n!!}.
+\]
+The $2^n$ in both equations has an interesting geometric meaning. Any $n$-sphere
+or $n$-ball can be partitioned into sectors by the $n$ axes of the
+$n$-dimensional space in which the $n$-sphere is embedded. For example, a
+circle (2-sphere) can be partitioned into four quadrants, and a sphere
+(3-sphere) into eight octants. The area or volume of an $n$-sphere is found by
+computing the area or volume of one of its sectors, then multiplying by the
+number of sectors.  There is also a lovely recurrence relation between area and
+volume:
+\begin{align*}
+    A_n & = 4\eta rV_{n-2} \\
+        & = CV_{n-2},
+\end{align*}
+where $C$ is the circumference of any $n$-sphere with radius $r$.
+
+We may simplify these formulas by defining area and volume constants. We define
+the area constant for $n$ as the constant satisfying the equality
+\[
+    A_n = \tau_n r^{n-1}.
+\]
+We can rearrange this equation to give an expression for all $\tau_n$:
+\begin{align*}
+    \tau_n & \equiv \frac{A_n}{r^{n-1}} \\
+           & = 2^n \frac{\eta^{\left \lfloor \frac{n}{2} \right \rfloor}}{(n-2)!!}.
+\end{align*}
+We likewise define the volume constant for $n$ as the constant satisfying the
+equality
+\[
+    V_n = \tau_n r^n.
+\]
+We can rearrange this equation to give an expression for all $\beta_n$:
+\begin{align*}
+    \beta_n & \equiv \frac{V_n}{r^n} \\
+            &= 2^n \frac{\eta^{\left \lfloor \frac{n}{2} \right \rfloor}}{n!!} \\
+            &= \frac{\tau_n}{n}.
+\end{align*}
+We can define an alternative area constant by relating the area of an $n$-sphere
+with its diameter $D$, such that
+\[
+    A_n = \pi_n D^{n-1}.
+\]
+We can rearrange this equation to give an expression for all $\pi_n$:
+\begin{align*}
+    \pi_n & \equiv \frac{A_n}{D^{n-1}} \\
+          & = \frac{\tau_n}{2^{n-1}}.
+\end{align*}
+
+Let us consider these families of constants for the first few $n$-spheres.
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{l | l l l}
+    $n$ & $\tau_n$           & $\beta_n$           & $\pi_n$             \\
+    \hline
+    2   & $2\pi$             & $\pi$               & $\pi$               \\
+    3   & $4\pi$             & $\frac{4}{3}\pi$    & $\pi$               \\
+    4   & $2\pi^2$           & $\frac{\pi^2}{2}$   & $\frac{\pi^2}{4}$   \\
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+
+As you can see, $\pi$ does have a geometric significance for circles, but it is
+the volume constant $\beta_2$. Recall that a 2-volume is ordinarily called an
+area, so the significance of $\pi$ is that it gives you the area of a circle:
+$A_2 = \beta_2 r^2 = \pi r^2$. It is true that the area/diameter constant
+$\pi_2$ of a 2-sphere is also $\pi$:
+\begin{align*}
+    \beta_2 &= \frac{\tau_2}{2} \\
+            &= \pi \\
+    \pi_2 &= \frac{\tau_2}{2^{2-1}} \\
+          &= \pi,
+\end{align*}
+but this is a coincidence that is only true of 2-spheres. For all other $n$,
+$2^{n-1} \ne n$. In other words, \em{the geometric significance of $\pi$ is a
+mathematical pun}.
+\qed
+\end{document}
